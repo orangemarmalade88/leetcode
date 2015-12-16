@@ -68,6 +68,7 @@ public class AddTwoNumbers {
 		return dummy.next;
 	}
 
+	// Improvement: combine logic together
 	public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
 		ListNode dummy = new ListNode(0);
 		ListNode current = dummy;
