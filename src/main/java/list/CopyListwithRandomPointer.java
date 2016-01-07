@@ -12,6 +12,8 @@ import model.RandomListNode;
 
 public class CopyListwithRandomPointer {
 
+	// Mistake: Random node can be null
+
 	public RandomListNode copyRandomList(RandomListNode head) {
 
 		if (head == null)
