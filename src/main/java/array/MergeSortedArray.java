@@ -13,6 +13,15 @@ package array;
 
 public class MergeSortedArray {
 	public void merge(int[] nums1, int m, int[] nums2, int n) {
+		int curM = m - 1;
+		int curN = n - 1;
+		int insert = m + n - 1;
 
+		while (curN >= 0) {
+			if (curM < 0 || nums1[curM] <= nums2[curN]) {
+				nums1[insert--] = nums2[curN--];
+			} else
+				nums1[insert--] = nums1[curM--];
+		}
 	}
 }
