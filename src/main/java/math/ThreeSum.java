@@ -2,8 +2,11 @@ package math;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /*
@@ -55,6 +58,47 @@ public class ThreeSum {
 		return result;
 	}
 
-	// Extension: O(N^2) space without sorting, store pairs into hash table
 	// Mistake: Don't forget to move j,k on matches
+
+	// Extension: O(N^2) space without sorting, store pairs into hash table
+	public List<List<Integer>> threeSum2(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		Set<List<Integer>> set = new HashSet<>();
+		if (nums.length <= 2)
+			return result;
+
+		Map<Integer, List<Integer[]>> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = i + 1; j < nums.length; j++) {
+				int sum = nums[i] + nums[j];
+				Integer[] pair = new Integer[] { i, j };
+				if (map.containsKey(sum)) {
+					map.get(sum).add(pair);
+				} else {
+					List<Integer[]> list = new ArrayList<>();
+					list.add(pair);
+					map.put(sum, list);
+				}
+			}
+		}
+
+		for (int i = 0; i < nums.length; i++) {
+			if (map.containsKey(-nums[i])) {
+				List<Integer[]> pairs = map.get(-nums[i]);
+				for (Integer[] pair : pairs) {
+					if (pair[0] != i && pair[1] != i) {
+						List<Integer> temp = new ArrayList<>();
+						temp.add(nums[i]);
+						temp.add(nums[pair[0]]);
+						temp.add(nums[pair[1]]);
+						Collections.sort(temp);
+						set.add(temp);
+					}
+				}
+			}
+		}
+		result.addAll(set);
+		return result;
+
+	}
 }
