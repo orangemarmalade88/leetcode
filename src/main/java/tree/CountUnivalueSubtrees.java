@@ -45,7 +45,8 @@ public class CountUnivalueSubtrees {
 		return left && right;
 	}
 
-	// Improvement, redundant visits O(NlgN), now improved to be O(N)
+	// Improvement, redundant visits O(NlgN) best case, worst case O(N^2), now
+	// improved to be O(N)
 	// Use a new structure to return 2 variables
 	public class Info {
 		boolean isUnivalue;
@@ -78,4 +79,7 @@ public class CountUnivalueSubtrees {
 
 		return new Info(rootB, rootC);
 	}
+
+	// Iterative solution: Do a post-order traversal and record isUnivalTree and
+	// count for each node
 }
