@@ -1,4 +1,4 @@
-package string.palindrome;
+package math.combination;
 
 import java.util.BitSet;
 
