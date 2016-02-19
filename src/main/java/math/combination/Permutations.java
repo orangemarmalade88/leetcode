@@ -30,7 +30,7 @@ public class Permutations {
 
 	private void dfs(List<Integer> array, int index, List<List<Integer>> result) {
 		if (index >= array.size()) {
-			List<Integer> list = new ArrayList<Integer>(array);
+			List<Integer> list = new ArrayList<>(array);
 			result.add(list);
 		} else {
 			for (int i = index; i < array.size(); i++) {
