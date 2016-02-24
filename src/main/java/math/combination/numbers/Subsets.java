@@ -1,10 +1,8 @@
-package math.combination;
+package math.combination.numbers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /*
 
@@ -36,24 +34,40 @@ public class Subsets {
 	// 111 -> [1, 2, 3] 101 -> [1, 3] 000 -> []
 
 	public List<List<Integer>> subsets(int[] nums) {
-		Set<List<Integer>> set = new HashSet<>();
 		Arrays.sort(nums);
-		dfs(nums, 0, new ArrayList<Integer>(), set);
-		List<List<Integer>> result = new ArrayList<>(set);
+		List<List<Integer>> result = new ArrayList<>();
+		dfs(nums, 0, new ArrayList<Integer>(), result);
 		return result;
 	}
 
 	private void dfs(int[] nums, int i, List<Integer> current,
-			Set<List<Integer>> set) {
+			List<List<Integer>> result) {
 		if (i >= nums.length)
-			set.add(current);
+			result.add(current);
 		else {
 			List<Integer> contained = new ArrayList<Integer>(current);
 			contained.add(nums[i]);
-			dfs(nums, i + 1, contained, set);
+			dfs(nums, i + 1, contained, result);
 			List<Integer> notContained = new ArrayList<Integer>(current);
-			dfs(nums, i + 1, notContained, set);
+			dfs(nums, i + 1, notContained, result);
 		}
+	}
+
+	public List<List<Integer>> subsets2(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		Arrays.sort(nums);
+		int l = 1 << nums.length;
+		for (int i = 0; i < l; i++) {
+			int temp = i;
+			List<Integer> list = new ArrayList<>();
+			while (temp != 0) {
+				int index = Integer.numberOfTrailingZeros(temp);
+				list.add(nums[index]);
+				temp ^= (1 << index);
+			}
+			result.add(list);
+		}
+		return result;
 	}
 
 }
