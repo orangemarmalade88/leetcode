@@ -1,4 +1,4 @@
-package math;
+package math.sum;
 
 import java.util.HashMap;
 import java.util.Map;
