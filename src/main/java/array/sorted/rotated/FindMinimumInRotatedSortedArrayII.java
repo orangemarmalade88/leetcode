@@ -2,26 +2,26 @@ package array.sorted.rotated;
 
 /*
 
+ Follow up for "Find Minimum in Rotated Sorted Array":
+ What if duplicates are allowed?
+
+ Would this affect the run-time complexity? How and why?
+
  Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 
  (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
 
  Find the minimum element.
 
- You may assume no duplicate exists in the array.
+ The array may contain duplicates.
 
  */
 
-public class FindMinimumInRotatedSortedArray {
+public class FindMinimumInRotatedSortedArrayII {
 	public int findMin(int[] nums) {
 		int low = 0;
 		int high = nums.length - 1;
 		while (low < high) {
-
-			// fast-fail for no duplicate case only
-			if (nums[low] < nums[high])
-				return nums[low];
-
 			int mid = (low + high) >>> 1;
 			// Use the right half because no chance of low == mid
 
@@ -30,9 +30,12 @@ public class FindMinimumInRotatedSortedArray {
 				high = mid;
 			}
 			// Right half is rotated, minimum in right half, also can't be mid
-			else {
+			else if (nums[mid] > nums[high]) {
 				low = mid + 1;
+			} else {
+				high--;
 			}
+
 		}
 		return nums[low];
 	}
