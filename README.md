@@ -25,3 +25,6 @@
 * 好一点，把pair和sum存在一个array里，用法一的two pointers法来做 复杂度是 O(N^2lg(N^2))=O(N^2lgN)
 * ThreeSum 如果 不允许 sort, 也可以用hashmap 做  存pairs 
 * 情况和 FourSum类似 也有两种具体的办法
+
+# Linked List 小总结
+* head节点可能不在结果里面，一般需要dummy node
