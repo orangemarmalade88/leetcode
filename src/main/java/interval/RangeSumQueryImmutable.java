@@ -20,6 +20,8 @@ package interval;
  */
 
 public class RangeSumQueryImmutable {
+	// O(N) init, O(1) query, O(N) update
+
 	public class NumArray {
 
 		int[] partialSums;

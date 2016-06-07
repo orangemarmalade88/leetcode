@@ -1,6 +1,5 @@
 package interval;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -26,32 +25,6 @@ public class InsertInterval {
 
 	// Follow up, check if any interval overlaps?
 	// Use binary search instead
-
-	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
-		if (intervals.size() == 0) {
-			intervals.add(newInterval);
-			return intervals;
-		}
-
-		List<Interval> result = new ArrayList<>();
-		for (int i = 0; i < intervals.size(); i++) {
-			Interval current = intervals.get(i);
-			if (current.start > newInterval.end) {
-				result.add(newInterval);
-				// Mistake subList [ ) inclusive - exclusive
-				result.addAll(intervals.subList(i, intervals.size()));
-				return result;
-			} else if (current.end < newInterval.start) {
-				result.add(current);
-			} else {
-				newInterval = new Interval(Math.min(newInterval.start,
-						current.start), Math.max(newInterval.end, current.end));
-			}
-		}
-		result.add(newInterval);
-		return result;
-
-	}
 
 	// Do it in the original list
 	public List<Interval> insert2(List<Interval> intervals, Interval newInterval) {
