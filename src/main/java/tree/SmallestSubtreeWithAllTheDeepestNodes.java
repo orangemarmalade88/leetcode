@@ -15,6 +15,7 @@ The subtree of a node is tree consisting of that node, plus the set of all desce
  */
 
 public class SmallestSubtreeWithAllTheDeepestNodes {
+	// Could have used Pair to remove some duplicate calculation on depth.
 	public TreeNode subtreeWithAllDeepest(TreeNode root) {
 		if (root == null)
 			return root;
