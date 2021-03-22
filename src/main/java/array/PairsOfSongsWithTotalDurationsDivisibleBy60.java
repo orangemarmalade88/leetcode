@@ -14,7 +14,7 @@ public class PairsOfSongsWithTotalDurationsDivisibleBy60 {
 	 * seconds is divisible by 60. Formally, we want the number of indices i, j
 	 * such that i < j with (time[i] + time[j]) % 60 == 0.
 	 *
-	 *
+	 * 应该加到map的时候就计算 pairs map可以用 int[60] 比较好
 	 */
 	public int numPairsDivisibleBy60(int[] time) {
 		Map<Integer, Integer> map = new HashMap<>();
