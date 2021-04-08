@@ -37,6 +37,8 @@ public class LeftMostColumnWithOne {
 	 */
 	int left_most = Integer.MAX_VALUE;
 
+	// Method 1: Binary Search
+	// O(NlogM)
 	public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
 		List<Integer> dimensions = binaryMatrix.dimensions();
 		int rows = dimensions.get(0);
@@ -61,5 +63,28 @@ public class LeftMostColumnWithOne {
 		}
 		if (binaryMatrix.get(row, l) == 1)
 			left_most = Math.min(l, left_most);
+	}
+
+	// Method 2: search top right to bot left
+	// O(N+M)
+	public int leftMostColumnWithOne2(BinaryMatrix binaryMatrix) {
+		List<Integer> dimensions = binaryMatrix.dimensions();
+		int rows = dimensions.get(0);
+		int columns = dimensions.get(1);
+		int left_most = columns;
+
+		int i = 0;
+		int j = columns - 1;
+		while (i < rows && j >= 0) {
+			if (binaryMatrix.get(i, j) == 1) {
+				left_most = j;
+				j--;
+			} else {
+				i++;
+			}
+		}
+		if (left_most == columns)
+			return -1;
+		return left_most;
 	}
 }
