@@ -28,6 +28,7 @@ public class FindMedianFromDataStream {
 		min_heap = new PriorityQueue<>();
 	}
 
+	// O(logN)
 	public void addNum(int num) {
 		if (max_heap.size() == min_heap.size()) {
 			if (min_heap.isEmpty() || num <= min_heap.peek())
@@ -46,6 +47,7 @@ public class FindMedianFromDataStream {
 		}
 	}
 
+	// O(1)
 	public double findMedian() {
 		if (max_heap.size() == min_heap.size())
 			return (max_heap.peek() + min_heap.peek()) / 2.0;
