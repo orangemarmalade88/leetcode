@@ -60,10 +60,7 @@ public class PacificAtlanticWaterFlow {
 		for (int x = 0; x < heights.length; x++) {
 			for (int y = 0; y < heights[0].length; y++) {
 				if (a_visited[x][y] && p_visited[x][y]) {
-					List<Integer> cor = new ArrayList<>();
-					cor.add(x);
-					cor.add(y);
-					res.add(cor);
+					res.add(List.of(x, y));
 				}
 			}
 		}
