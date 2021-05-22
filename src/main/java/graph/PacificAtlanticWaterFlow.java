@@ -71,7 +71,6 @@ public class PacificAtlanticWaterFlow {
 		while (!queue.isEmpty()) {
 			int[] cur = queue.poll();
 			visited[cur[0]][cur[1]] = true;
-			int height = heights[cur[0]][cur[1]];
 			for (int[] d : directions) {
 				int x = cur[0] + d[0];
 				int y = cur[1] + d[1];
