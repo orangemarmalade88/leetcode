@@ -180,6 +180,7 @@ public class PalindromePairs {
 	public static void main(String[] args) {
 		String[] words = { "a", "" };
 		PalindromePairs x = new PalindromePairs();
+		@SuppressWarnings("unused")
 		PalindromePairs.Solution p = x.new Solution();
 		x.palindromePairs(words);
 	}
