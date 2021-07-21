@@ -1,12 +1,15 @@
 package tree;
 
 import java.util.LinkedList;
+import java.util.List;
+
+import model.TreeNode;
 
 public class DeepestLeavesSum {
 	/*
 	 * Given the root of a binary tree, return the sum of values of its deepest
 	 * leaves.
-	 * 
+	 *
 	 */
 	public int deepestLeavesSum(TreeNode root) {
 		List<TreeNode> cur = new LinkedList<>();
