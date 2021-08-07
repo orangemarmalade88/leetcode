@@ -1,4 +1,4 @@
-package graph;
+package grid;
 
 public class SurroundedRegions {
 	int m;
