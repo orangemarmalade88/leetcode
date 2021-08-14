@@ -1,5 +1,7 @@
 package tree;
 
+import model.TreeNode;
+
 public class CountUnivalueSubtrees {
 	int count = 0;
 
