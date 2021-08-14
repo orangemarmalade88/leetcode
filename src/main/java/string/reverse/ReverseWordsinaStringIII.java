@@ -1,4 +1,4 @@
-package string;
+package string.reverse;
 
 public class ReverseWordsinaStringIII {
 	public String reverseWords(String s) {

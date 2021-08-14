@@ -1,4 +1,4 @@
-package string;
+package string.reverse;
 
 public class ReverseString {
 	public void reverseString(char[] s) {
