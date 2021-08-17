@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class MaximumAreaofaPieceofCakeAfterHorizontalandVerticalCuts {
 	public int maxArea(int h, int w, int[] horizontalCuts, int[] verticalCuts) {
 		int maxH = 0;
-		int preH = 0;
 		Arrays.sort(horizontalCuts);
 		for (int i = 1; i < horizontalCuts.length; i++) {
 			maxH = Math.max(maxH, horizontalCuts[i] - horizontalCuts[i - 1]);
