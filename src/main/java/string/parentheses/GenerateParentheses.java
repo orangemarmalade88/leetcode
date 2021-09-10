@@ -1,4 +1,4 @@
-package string;
+package string.parentheses;
 
 import java.util.ArrayList;
 import java.util.List;
