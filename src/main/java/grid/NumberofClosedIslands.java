@@ -45,10 +45,8 @@ public class NumberofClosedIslands {
 		for (int[] dir : dirs) {
 			int x = i + dir[0];
 			int y = j + dir[1];
-			if (x >= 0 && x < m && y >= 0 && y < m)
-				System.out.println(grid[x][y]);
 
-			if (x >= 0 && x < m && y >= 0 && y < m && grid[x][y] == 0) {
+			if (x >= 0 && x < m && y >= 0 && y < n && grid[x][y] == 0) {
 				dfs(grid, x, y, state);
 			}
 		}
