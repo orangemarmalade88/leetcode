@@ -6,6 +6,7 @@ public class Node {
 	public int val;
 	public List<Node> children;
 	public Node parent;
+	public Node random;
 
 	public Node() {
 	}
