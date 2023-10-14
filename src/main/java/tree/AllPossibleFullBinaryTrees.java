@@ -12,6 +12,9 @@ public class AllPossibleFullBinaryTrees {
 	Map<Integer, List<TreeNode>> m = new HashMap<>();
 
 	public List<TreeNode> allPossibleFBT(int n) {
+		if (m.containsKey(n))
+			return m.get(n);
+
 		List<TreeNode> list = new ArrayList<>();
 		n--;
 		if (n % 2 != 0)
@@ -33,6 +36,7 @@ public class AllPossibleFullBinaryTrees {
 				}
 			}
 		}
+		m.put(n, list);
 		return list;
 
 	}
