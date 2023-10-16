@@ -18,11 +18,11 @@ public class RemoveAllAdjacentDuplicatesinStringII {
 		}
 		StringBuilder sb = new StringBuilder();
 		while (!stack.isEmpty()) {
-			int[] e = stack.pop();
+			int[] e = stack.pollLast();
 			for (int i = 0; i < e[1]; i++) {
 				sb.append((char) (e[0]));
 			}
 		}
-		return sb.reverse().toString();
+		return sb.toString();
 	}
 }
