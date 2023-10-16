@@ -1,4 +1,5 @@
 package graph;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,6 +18,7 @@ public class AccountsMerge {
 		List<List<String>> result = new ArrayList<>();
 
 		Map<String, Set<String>> graph = new HashMap<>(); // email -> others
+															// emails
 
 		for (List<String> s : accounts) {
 			String name = s.get(0);
@@ -26,7 +28,7 @@ public class AccountsMerge {
 			}
 			Set<String> neighbors = new HashSet<>(emails);
 			for (String n : neighbors) {
-				Set<String> next = graph.getOrDefault(n, new HashSet<>()); // test
+				Set<String> next = graph.getOrDefault(n, new HashSet<>());
 				next.addAll(neighbors);
 				graph.put(n, next);
 			}
@@ -36,11 +38,9 @@ public class AccountsMerge {
 			List<String> re = new ArrayList<>();
 			if (!visited.contains(s)) {
 				dfs(s, nodes, visited, graph, re);
-				if (re.size() > 0) {
-					Collections.sort(re);
-					re.add(0, nodes.get(s));
-					result.add(re);
-				}
+				Collections.sort(re);
+				re.add(0, nodes.get(s));
+				result.add(re);
 			}
 		}
 		return result;
@@ -53,7 +53,7 @@ public class AccountsMerge {
 		visited.add(email);
 		Set<String> neighbors = graph.get(email);
 		for (String n : neighbors) {
-			if (!n.equals(email) && !visited.contains(n))
+			if (!visited.contains(n))
 				dfs(n, nodes, visited, graph, re);
 		}
 	}
