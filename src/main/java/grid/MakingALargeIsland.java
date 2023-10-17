@@ -1,47 +1,30 @@
 package grid;
 
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
 public class MakingALargeIsland {
+	int[][] dirs = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
+	int m;
+	int n;
+
+	Map<Integer, Integer> map = new HashMap<>();
+
 	public int largestIsland(int[][] grid) {
-		Map<Integer, Integer> map = new HashMap<>();
-		int m = grid.length;
-		int n = grid[0].length;
+		m = grid.length;
+		n = grid[0].length;
 
-		int max = 0;
-		int[][] id = new int[m][n];
-		int cur_id = 1;
+		int max = 1;
 
-		int[][] dirs = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
-
+		int cur_id = 2;
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				if (grid[i][j] == 1 && id[i][j] == 0) {
-					Deque<int[]> stack = new LinkedList<>();
-					stack.push(new int[] { i, j });
-					id[i][j] = cur_id;
-					int area = 0;
-					while (!stack.isEmpty()) {
-						int[] cur = stack.pop();
-						area++;
-						for (int[] d : dirs) {
-							int x = cur[0] + d[0];
-							int y = cur[1] + d[1];
-							if (x >= 0 && x < m && y >= 0 && y < n
-									&& grid[x][y] == 1 && id[x][y] == 0) {
-								stack.push(new int[] { x, y });
-								id[x][y] = cur_id;
-							}
-						}
-					}
-					map.put(cur_id, area);
-					cur_id++;
-					max = Math.max(area, max);
+				if (grid[i][j] == 1) {
+					int area = dfs(grid, i, j, cur_id);
+					max = Math.max(max, area);
+					map.put(cur_id++, area);
 				}
 			}
 		}
@@ -49,26 +32,36 @@ public class MakingALargeIsland {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				if (grid[i][j] == 0) {
-					int area = 0;
-					Set<Integer> set = new HashSet<>();
+					int area = 1;
+					Set<Integer> s = new HashSet<>();
 					for (int[] d : dirs) {
-						int x = i + d[0];
-						int y = j + d[1];
-						if (x >= 0 && x < m && y >= 0 && y < n
-								&& grid[x][y] == 1) {
-							if (!set.contains(id[x][y])) {
-								set.add(id[x][y]);
-								area += map.get(id[x][y]);
+						int p = i + d[0];
+						int q = j + d[1];
+						if (p >= 0 && p < m && q >= 0 && q < n
+								&& grid[p][q] > 1) {
+							if (!s.contains(grid[p][q])) {
+								s.add(grid[p][q]);
+								area += map.get(grid[p][q]);
 							}
 						}
 					}
-					max = Math.max(area + 1, max);
-
+					max = Math.max(max, area);
 				}
-
 			}
-
 		}
 		return max;
+	}
+
+	public int dfs(int[][] grid, int x, int y, int id) {
+		int ans = 1;
+		grid[x][y] = id;
+		for (int[] d : dirs) {
+			int i = x + d[0];
+			int j = y + d[1];
+			if (i >= 0 && i < m && j >= 0 && j < n && grid[i][j] == 1) {
+				ans += dfs(grid, i, j, id);
+			}
+		}
+		return ans;
 	}
 }
