@@ -14,15 +14,17 @@ public class WordPattern {
 
 		for (int i = 0; i < parts.length; i++) {
 			if (map.containsKey(parts[i])) {
-				if (map.get(parts[i]) != s.charAt(i)) {
+				if (map.get(parts[i]) != pattern.charAt(i)) {
 					return false;
 				}
-				if (!dict[s.charAt(i) - 'a'].equals(parts[i])) {
+				if (!dict[pattern.charAt(i) - 'a'].equals(parts[i])) {
 					return false;
 				}
 			} else {
-				map.put(parts[i], s.charAt(i));
-				dict[s.charAt(i) - 'a'] = parts[i];
+				if (dict[pattern.charAt(i) - 'a'] != null)
+					return false;
+				map.put(parts[i], pattern.charAt(i));
+				dict[pattern.charAt(i) - 'a'] = parts[i];
 			}
 		}
 		return true;
