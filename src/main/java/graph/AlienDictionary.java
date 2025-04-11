@@ -71,9 +71,4 @@ public class AlienDictionary {
 		sb.append(c);
 		return true;
 	}
-
-	public static void main(String[] args) {
-		String[] words = { "wrt", "wrf", "er", "ett", "rftt" };
-		System.out.println(alienOrder(words));
-	}
 }
