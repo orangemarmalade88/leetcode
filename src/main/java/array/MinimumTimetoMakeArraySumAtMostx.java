@@ -22,7 +22,18 @@ public class MinimumTimetoMakeArraySumAtMostx {
 		for (int i = 1; i <= size; i++) {
 			for (int j = 1; j <= i; j++) {
 				dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1]
-						+ combine[i - 1][1] * j + combine[i - 1][0]);
+						+ combine[i - 1][1] * j + combine[i - 1][0]); // why we
+																		// need
+																		// max?
+																		// some
+																		// one
+																		// start
+																		// late
+																		// might
+																		// not
+																		// have
+																		// grown
+																		// enough
 			}
 		}
 
