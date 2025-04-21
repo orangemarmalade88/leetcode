@@ -1,55 +1,31 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.PriorityQueue;
 
 public class ReconstructItinerary {
 
-	List<String> final_result = null;
-	String result_path = "";
-	int n = -1;
+	List<String> final_result = new LinkedList<>();
 
 	public List<String> findItinerary(List<List<String>> tickets) {
-		Map<String, Set<String>> map = new HashMap<>();
-		Map<String, Set<String>> visited = new HashMap<>();
-		n = tickets.size();
+		Map<String, PriorityQueue<String>> map = new HashMap<>();
 		for (List<String> s : tickets) {
-
-			map.computeIfAbsent(s.get(0), value -> new HashSet<>());
-			map.get(s.get(0)).add(s.get(1));
-
-			visited.computeIfAbsent(s.get(0), value -> new HashSet<>());
+			map.computeIfAbsent(s.get(0), value -> new PriorityQueue<>())
+					.add(s.get(1));
 		}
-		List<String> result = new ArrayList<>();
-		dfs(map, visited, "JFK", result, "JFK");
+		dfs(map, "JFK");
 		return final_result;
 	}
 
-	public void dfs(Map<String, Set<String>> map,
-			Map<String, Set<String>> visited, String cur, List<String> result,
-			String path) {
-		if (result.size() == n + 1) {
-			if (final_result == null || result_path.compareTo(path) > 0) {
-				result_path = path;
-				final_result = result;
-			}
-		} else {
-			Set<String> des = map.get(cur);
-			Set<String> vis = visited.get(cur);
-			if (des != null) {
-				for (String d : des) {
-					List<String> next = new ArrayList<>(result);
-					next.add(d);
-					if (!vis.contains(d)) {
-						vis.add(d);
-						dfs(map, visited, d, next, path + d);
-					}
-				}
-			}
+	public void dfs(Map<String, PriorityQueue<String>> map, String cur) {
+		PriorityQueue<String> pq = map.get(cur);
+		while (pq != null && !pq.isEmpty()) {
+			String des = pq.poll();
+			dfs(map, des);
 		}
+		final_result.add(0, cur);
 	}
 }
