@@ -21,7 +21,7 @@ public class PartitionLabels {
 			tail = Math.max(tail, end[id]);
 			if (tail == i) {
 				result.add(tail - head + 1);
-				head = i;
+				head = i + 1;
 			}
 		}
 
